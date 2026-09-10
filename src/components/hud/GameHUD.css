@@ -1,0 +1,361 @@
+.hud-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  overflow-y: auto;
+  background: rgba(20, 20, 24, 0.88);
+  backdrop-filter: blur(6px);
+  border-left: 1px solid #33333c;
+  color: #e8e6df;
+  font-size: 13px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.hud-turn-banner {
+  font-size: 15px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #33333c;
+}
+
+.hud-turn-banner strong {
+  color: #d4af37;
+}
+
+.hud-phase {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #9a978c;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.hud-section {
+  margin-bottom: 18px;
+}
+
+.hud-section h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9a978c;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.hud-hint {
+  color: #77746a;
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+
+.ai-thinking {
+  color: #b9d9a2;
+  animation: ai-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.player-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.activity-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #b8b6ac;
+}
+
+.activity-feed li {
+  padding: 4px 8px;
+  background: #202024;
+  border-radius: 5px;
+  border-left: 2px solid #3c3c46;
+}
+
+.activity-feed li:first-child {
+  color: #e8e6df;
+  border-left-color: #d4af37;
+}
+
+.player-row {
+  background: #232329;
+  border: 1px solid #33333c;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.player-row.current {
+  border-color: #d4af37;
+}
+
+.player-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-name {
+  font-weight: 600;
+}
+
+.player-cash {
+  color: #8fd19e;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-cash-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cash-eye-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.65;
+  filter: grayscale(1);
+}
+
+.cash-eye-toggle:hover {
+  opacity: 1;
+  filter: none;
+}
+
+.player-shares {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.share-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  background: #1b1b1f;
+  border-radius: 10px;
+  padding: 2px 6px;
+}
+
+.share-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--chip-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-block;
+}
+
+.hand-rack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hand-tile {
+  position: relative;
+  background: #e8e0cc;
+  color: #3c2a1c;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hand-tile:hover:not(.disabled) {
+  background: #f4edda;
+}
+
+.hand-tile.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.hand-tile.dead {
+  background: #4a2a2a;
+  color: #f0b8b8;
+}
+
+.dead-x {
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+.chain-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.chain-table th {
+  text-align: left;
+  color: #77746a;
+  font-weight: 500;
+  padding: 2px 4px;
+}
+
+.chain-table td {
+  padding: 4px;
+  border-top: 1px solid #2a2a30;
+}
+
+.chain-row.inactive {
+  opacity: 0.45;
+}
+
+.chain-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-block;
+}
+
+.safe-badge {
+  margin-left: 6px;
+  font-size: 9px;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  border-radius: 3px;
+  padding: 1px 3px;
+  vertical-align: middle;
+}
+
+.buy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.buy-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #232329;
+  border: 1px solid #33333c;
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: #e8e6df;
+  font-size: 12px;
+}
+
+.buy-row i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chip-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-block;
+  flex: none;
+}
+
+.buy-name {
+  flex: 1;
+}
+
+.buy-price {
+  color: #8fd19e;
+}
+
+.buy-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.stepper-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1px solid #3c3c46;
+  background: #1b1b1f;
+  color: #e8e6df;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepper-btn:hover:not(:disabled) {
+  border-color: #d4af37;
+}
+
+.stepper-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.stepper-count {
+  min-width: 14px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.end-turn-btn,
+.end-game-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.end-turn-btn {
+  background: #d4af37;
+  color: #1b1b1f;
+}
+
+.end-turn-btn:hover {
+  background: #e0bd48;
+}
+
+.end-game-btn {
+  background: #7a3535;
+  color: #f0e6e6;
+}
+
+.end-game-btn:hover {
+  background: #8f3f3f;
+}

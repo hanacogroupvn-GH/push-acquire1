@@ -1,0 +1,169 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal-card {
+  width: min(440px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #1e1e24;
+  border: 1px solid #33333c;
+  border-radius: 12px;
+  padding: 24px;
+  color: #e8e6df;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+.modal-card h2 {
+  margin: 0 0 4px;
+  font-size: 19px;
+}
+
+.modal-subtitle {
+  margin: 0 0 18px;
+  color: #9a978c;
+  font-size: 13px;
+}
+
+.modal-ai-thinking {
+  color: #b9d9a2;
+  font-size: 14px;
+  margin: 4px 0 0;
+  animation: modal-ai-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes modal-ai-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.chain-choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.chain-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #232329;
+  border: 1px solid #33333c;
+  border-radius: 8px;
+  padding: 12px;
+  color: #e8e6df;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chain-choice-btn:hover {
+  border-color: #d4af37;
+}
+
+.chain-choice-btn i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--chip-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-block;
+}
+
+.stock-decision-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.stock-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.stock-field label {
+  font-size: 12px;
+  color: #9a978c;
+}
+
+.stock-field input {
+  background: #29292f;
+  border: 1px solid #3c3c46;
+  border-radius: 6px;
+  padding: 8px;
+  color: #f0efe8;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stock-kept-note {
+  font-size: 12px;
+  color: #77746a;
+  margin-bottom: 16px;
+}
+
+.modal-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #d4af37;
+  color: #1b1b1f;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-submit-btn:hover {
+  background: #e0bd48;
+}
+
+.standings-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.standings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #232329;
+  border: 1px solid #33333c;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.standings-row.winner {
+  border-color: #d4af37;
+}
+
+.standings-rank {
+  color: #77746a;
+  margin-right: 8px;
+}
+
+.standings-cash {
+  color: #8fd19e;
+  font-variant-numeric: tabular-nums;
+}

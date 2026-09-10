@@ -1,0 +1,9 @@
+.app-root {
+  width: calc(100vw - 320px);
+  height: 100vh;
+}
+
+.app-root canvas {
+  display: block;
+  touch-action: none;
+}

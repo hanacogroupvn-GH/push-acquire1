@@ -1,0 +1,20 @@
+.undo-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 30; /* above .modal-overlay (20) so it stays reachable during founding/merger prompts */
+  background: rgba(30, 30, 36, 0.92);
+  border: 1px solid #d4af37;
+  color: #f0e6c8;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.undo-btn:hover {
+  background: rgba(40, 40, 48, 0.96);
+  border-color: #e0bd48;
+}
