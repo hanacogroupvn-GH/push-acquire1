@@ -1,9 +1,37 @@
 .app-root {
   width: calc(100vw - var(--hud-width));
   height: 100vh;
+  height: 100dvh;
 }
 
 .app-root canvas {
   display: block;
   touch-action: none;
+}
+
+/* Small screen: a fixed-width sidebar column doesn't work once the
+   viewport itself is only a few hundred px wide -- instead give the board
+   and the HUD (see .hud-panel) a fixed share of the screen each, split
+   along whichever axis the phone is held: side by side in landscape
+   (there's width to spare), stacked in portrait (there's height to
+   spare). Both stay visible together, at all times, no toggle needed. */
+@media (max-width: 900px) and (orientation: landscape), (max-height: 480px) {
+  .app-root {
+    width: 65vw;
+  }
+}
+
+/* Portrait: the board is wider than it is deep, so once the camera fits
+   it into a tall, narrow box (the previous 65vh split), most of that
+   height goes unused above/below the board -- letterboxing, not extra
+   board size. Pinning the box to the board's own near-square fit ratio
+   (~21:20, matching Scene.jsx's camera fit -- see BOARD_WIDTH/BOARD_DEPTH
+   in constants.js) keeps the board pushed to the top with no dead space,
+   and hands everything reclaimed below it to the HUD (see .hud-panel). */
+@media (max-width: 900px) and (orientation: portrait) {
+  .app-root {
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 21 / 20;
+  }
 }

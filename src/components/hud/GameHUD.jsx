@@ -317,19 +317,23 @@ export default function GameHUD() {
   return (
     <>
       <div className="hud-panel">
-        <div className="hud-turn-banner">
-          {isInterrupt ? 'Cần quyết định từ ' : 'Lượt của '}
-          <strong>
-            {actor?.isAI && '🤖 '}
-            {actor?.name}
-          </strong>
-          <span className="hud-phase">{phaseLabel(state.phase)}</span>
+        <div className="hud-header">
+          <div className="hud-turn-banner">
+            {isInterrupt ? 'Cần quyết định từ ' : 'Lượt của '}
+            <strong>
+              {actor?.isAI && '🤖 '}
+              {actor?.name}
+            </strong>
+            <span className="hud-phase">{phaseLabel(state.phase)}</span>
+          </div>
         </div>
-        <ActivityFeed state={state} />
-        <PlayerList state={state} />
-        <HandRack state={state} dispatch={dispatch} />
-        <ChainTable state={state} />
-        <ActionBar state={state} dispatch={dispatch} />
+        <div className="hud-body">
+          <ActivityFeed state={state} />
+          <PlayerList state={state} />
+          <HandRack state={state} dispatch={dispatch} />
+          <ChainTable state={state} />
+          <ActionBar state={state} dispatch={dispatch} />
+        </div>
       </div>
 
       {state.phase === 'found-chain' && <FoundChainModal state={state} dispatch={dispatch} />}

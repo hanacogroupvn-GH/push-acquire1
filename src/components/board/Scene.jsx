@@ -19,19 +19,24 @@ function BoardCamera() {
     const elevation = THREE.MathUtils.degToRad(ELEVATION_DEG)
     const direction = new THREE.Vector3(0, Math.sin(elevation), Math.cos(elevation))
 
-    // Bounding sphere around the board (grid + frame + player seat plaques
-    // just outside it + a placed tile's height) guarantees everything fits
-    // regardless of camera tilt.
-    const seatHalfW = BOARD_WIDTH / 2 + FRAME_MARGIN + SEAT_MARGIN
-    const seatHalfD = BOARD_DEPTH / 2 + FRAME_MARGIN + SEAT_MARGIN
-    const boundingRadius = Math.sqrt(seatHalfW ** 2 + seatHalfD ** 2 + 2 ** 2)
+    // Half-extents of the board (grid + frame + player seat plaques just
+    // outside it), plus headroom for a placed tile's height on the depth
+    // axis, which is the one foreshortened by the camera's downward tilt.
+    const halfW = BOARD_WIDTH / 2 + FRAME_MARGIN + SEAT_MARGIN
+    const halfD = BOARD_DEPTH / 2 + FRAME_MARGIN + SEAT_MARGIN + 2
 
     const aspect = size.width / size.height || 1
     const vFov = THREE.MathUtils.degToRad(FOV)
     const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect)
-    const effectiveHalfFov = Math.min(vFov, hFov) / 2
 
-    const fitDistance = (boundingRadius / Math.sin(effectiveHalfFov)) * FIT_MARGIN
+    // Fit width against the horizontal FOV and depth against the vertical
+    // FOV independently, then take whichever needs more distance. A single
+    // bounding-sphere fit (the old approach) wastes the extra room a wide
+    // aspect ratio (e.g. a phone in landscape) opens up on the loose axis,
+    // leaving big empty gutters and a board that reads as too small.
+    const distanceForWidth = halfW / Math.tan(hFov / 2)
+    const distanceForDepth = halfD / Math.tan(vFov / 2)
+    const fitDistance = Math.max(distanceForWidth, distanceForDepth) * FIT_MARGIN
 
     return {
       position: direction.multiplyScalar(fitDistance).toArray(),

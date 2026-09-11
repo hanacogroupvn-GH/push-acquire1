@@ -4,25 +4,12 @@
   --hud-width: 320px;
 }
 
-/* Phone in landscape: HUD eats a much bigger share of a short, wide
-   viewport, so shrink it to leave room for the board. */
-@media (max-width: 900px), (max-height: 480px) {
-  :root {
-    --hud-width: 240px;
-  }
-}
-
-@media (max-width: 700px) {
-  :root {
-    --hud-width: 190px;
-  }
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
   background: #1b1b1f;
 }
