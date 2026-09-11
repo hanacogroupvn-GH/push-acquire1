@@ -5,16 +5,23 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle at 50% 30%, #26262c, #101013);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .setup-card {
   width: min(420px, 90vw);
+  max-height: 100%;
+  overflow-y: auto;
   background: #1e1e24;
   border: 1px solid #33333c;
   border-radius: 12px;
   padding: 28px 32px 32px;
   color: #e8e6df;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
 }
 
 .setup-card h1 {

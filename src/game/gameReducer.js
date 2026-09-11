@@ -439,6 +439,7 @@ export function gameReducer(state, action) {
         chainId,
         tradeUnits,
         sellCount,
+        saleAmount: sellCount * price,
         kept: held - tradeUnits * 2 - sellCount,
       })
 

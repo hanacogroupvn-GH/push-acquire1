@@ -1,5 +1,5 @@
 .app-root {
-  width: calc(100vw - 320px);
+  width: calc(100vw - var(--hud-width));
   height: 100vh;
 }
 

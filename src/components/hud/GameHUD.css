@@ -2,9 +2,10 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 320px;
+  width: var(--hud-width);
   height: 100vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: rgba(20, 20, 24, 0.88);
   backdrop-filter: blur(6px);
   border-left: 1px solid #33333c;
@@ -12,6 +13,46 @@
   font-size: 13px;
   padding: 16px;
   box-sizing: border-box;
+}
+
+/* Phone landscape: viewport is short and wide, so tighten vertical rhythm
+   and shrink text so every section still fits without excess scrolling. */
+@media (max-width: 900px), (max-height: 480px) {
+  .hud-panel {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .hud-turn-banner {
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+  }
+
+  .hud-section {
+    margin-bottom: 10px;
+  }
+
+  .hand-tile {
+    padding: 5px 6px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hud-panel {
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  .player-name,
+  .buy-name {
+    font-size: 11px;
+  }
+
+  .chain-table {
+    font-size: 10px;
+  }
 }
 
 .hud-turn-banner {
@@ -123,6 +164,12 @@
 
 .player-cash {
   color: #8fd19e;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-tile-count {
+  color: #9a978c;
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
 

@@ -135,6 +135,29 @@
   background: #e0bd48;
 }
 
+.merger-result-list {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.merger-result-list li {
+  background: #232329;
+  border: 1px solid #33333c;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.merger-result-amount {
+  color: #8fd19e;
+}
+
 .standings-list {
   list-style: none;
   margin: 0 0 8px;

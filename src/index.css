@@ -1,6 +1,21 @@
 :root {
   color-scheme: dark;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --hud-width: 320px;
+}
+
+/* Phone in landscape: HUD eats a much bigger share of a short, wide
+   viewport, so shrink it to leave room for the board. */
+@media (max-width: 900px), (max-height: 480px) {
+  :root {
+    --hud-width: 240px;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --hud-width: 190px;
+  }
 }
 
 html,

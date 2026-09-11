@@ -15,6 +15,7 @@ import FoundChainModal from '../modals/FoundChainModal.jsx'
 import MergerSurvivorModal from '../modals/MergerSurvivorModal.jsx'
 import StockDecisionModal from '../modals/StockDecisionModal.jsx'
 import GameOverModal from '../modals/GameOverModal.jsx'
+import MergerResultModal from '../modals/MergerResultModal.jsx'
 import './GameHUD.css'
 
 function formatMoney(n) {
@@ -45,7 +46,7 @@ function describeLogEntry(entry, state) {
     case 'merge-complete':
       return `${chainName(entry.survivorId)} là chuỗi sống sót sau sáp nhập`
     case 'stock-decision':
-      return `${who} xử lý cổ ${chainName(entry.chainId)}: đổi ${entry.tradeUnits} cặp, bán ${entry.sellCount}, giữ ${entry.kept}`
+      return `${who} xử lý cổ ${chainName(entry.chainId)}: đổi ${entry.tradeUnits} cặp, bán ${entry.sellCount}${entry.saleAmount ? ` (+${formatMoney(entry.saleAmount)})` : ''}, giữ ${entry.kept}`
     case 'buy':
       return `${who} mua 1 cổ ${chainName(entry.chainId)} (${formatMoney(entry.price)})`
     case 'undo-buy':
@@ -110,6 +111,12 @@ function PlayerList({ state }) {
                   {p.name}
                 </span>
                 <span className="player-cash-wrap">
+                  <span
+                    className="player-tile-count"
+                    title={`${p.name} còn ${p.tiles.length} quân trên tay (úp, không lộ mặt)`}
+                  >
+                    🁢 {p.tiles.length}
+                  </span>
                   <span className="player-cash">{revealed ? formatMoney(p.cash) : '••••••'}</span>
                   <button
                     type="button"
@@ -150,13 +157,17 @@ function sortTileIds(tileIds) {
 function HandRack({ state, dispatch }) {
   const player = currentPlayer(state)
   const canPlace = state.phase === 'place-tile'
-  const aiTurn = canPlace && player.isAI
+  // Hidden for the whole AI turn, not just while it's placing a tile --
+  // otherwise the AI's tiles leak once it moves on to buy-stock/merger
+  // phases in the same turn (they'd stay listed here since canPlace is
+  // false but this section didn't know to keep hiding them).
+  const aiTurn = player.isAI
 
   return (
     <section className="hud-section">
       <h2>Quân của {player.name}</h2>
       {aiTurn ? (
-        <p className="hud-hint ai-thinking">🤖 Máy đang suy nghĩ...</p>
+        <p className="hud-hint ai-thinking">🤖 Máy đang xử lý...</p>
       ) : (
         <div className="hand-rack">
           {sortTileIds(player.tiles).map((tileId) => {
@@ -186,7 +197,7 @@ function HandRack({ state, dispatch }) {
           Bỏ qua (hết quân)
         </button>
       )}
-      {!canPlace && <p className="hud-hint">Chờ xử lý xong bước hiện tại...</p>}
+      {!canPlace && !aiTurn && <p className="hud-hint">Chờ xử lý xong bước hiện tại...</p>}
     </section>
   )
 }
@@ -329,6 +340,7 @@ export default function GameHUD() {
         <StockDecisionModal state={state} dispatch={dispatch} />
       )}
       {state.phase === 'game-over' && <GameOverModal state={state} />}
+      <MergerResultModal state={state} />
     </>
   )
 }
